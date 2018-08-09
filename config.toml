@@ -1,0 +1,18 @@
+concurrent = 1
+check_interval = 0
+
+[[runners]]
+  name = "my-runner"
+  url = "http://gitlab:7070"
+  clone_url = "http://gitlab:7070"
+  token = "126783a8c5781eca8cc26888044729"
+  executor = "docker"
+  [runners.docker]
+    tls_verify = false
+    image = "gitlab/dind"
+    privileged = false
+    disable_cache = false
+    network_mode = "tutorial_default"
+    volumes = ["/cache","/var/run/docker.sock:/var/run/docker.sock"]
+    shm_size = 0
+  [runners.cache]
