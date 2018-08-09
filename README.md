@@ -5,9 +5,12 @@ Project by: Lukas Graber, (insert your name here) under Prof. Dr. Giovanni Beltr
 ## TODO for Team
 
 - insert your names at top of readme file  
-- you can try to make additional text file, that contains the steps and send it to the Professor  
-- Try to reproduce it yourself and change the readme file if something is unclear  
-- If you can reproduce, you can even make a tutorial video and put it on youtube and put the link on here, but that might be overkill  
+- you can make an additional text file, that contains the steps to reproduce and send it to the Professor  
+- Maybe develop turtlesim bash file (you would need to create bash file, include this file in Dockerfile and add all the necessary files to the repository) and you can put it on here and add in steps to reproduce where to use this bash file and what it will do  
+- Try to reproduce the system yourself by following the steps and change the readme file if something is unclear  
+- If you can reproduce, you can even make a tutorial video and put it on youtube and put the link in the readme, but that might be overkill  
+- If everyone wants to contribute to this repository, maybe one can make a text file containing the steps to reproduce, another one can create a turtlesim application in bash file and the third can create the youtube video  
+- Otherwise just change something minor so that the professor sees that you contributed to the repository  
 - Before deadline remove these TODO lines from README
 
 ## Introduction
@@ -52,7 +55,7 @@ https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce-1
 2. Install docker-compose  
 https://docs.docker.com/compose/install/  
 3. Find out your ip that router assigns to your machine: use nmcli and look for the line that starts with inet4. Note the ip that follows after inet4 - this is the ip that router assigns to pc  
-4. Map this ip to some artificial name (in our case master) in /etc/hosts - later we want to access gitlab instance over this ip but instead of using ip we want to type artificial name in browser  
+4. Map this ip to some artificial name (in our case master) in /etc/hosts (see hosts file in repository) - later we want to access gitlab instance over this ip but instead of using ip we want to type artificial name in browser  
 5. Create docker-compose.yml file from our repository and start containers with docker-compose up -d(you have to be in same folder as docker-compose.yml file when typing this command, -d for background)  
 6. type: master:7070 in browser and log in to Gitlab for first time (may take a while to pull images and start containers)  
 7. Create a project and initialize a git repository to pull and push to remote gitlab repository, just follow the advice of gitlab page to initialize and configure git on local machine  
@@ -86,7 +89,7 @@ https://docs.docker.com/compose/install/
 
 	Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!  
 
-9. Now a runner is registered. But to use it in Gitlab, we still need to change some configuration for the registered runner:  
+9. Now a runner is registered. But to use it in Gitlab, we still need to change some configuration for the registered runner (see config.toml file in repository):  
     - Find out the network on which gitlab is sitting with docker network ls and search for network whose first part is called like the folder where docker-compose file is sitting, make docker network inspect this_network and look if gitlab and gitlab-runner container is in there -> this is the network the registered runner needs to be registered to  
     - change configuration for runner to work in ci pipeline  
     clone_url: clone_url = "http://gitlab:7070"  
@@ -94,11 +97,11 @@ https://docs.docker.com/compose/install/
     volume: volumes = ["/cache","/var/run/docker.sock:/var/run/docker.sock"]  
 10. Integrate gitlab image registry  
 - The registry url is already set in the docker-compose file (you could also change line in gitlab.rb file)  
-- Add insecure registries in /etc/docker/daemon.json (also on other machines of cluster)  
+- Add insecure registries in /etc/docker/daemon.json (see daemon.json file in repository)  
 - Restart docker engine: sudo service docker restart  
 11. Other machines can connect to Gitlab instance over browser:  
 Type master:7070 in browser and register to gitlab -> master can add people to project and assign rank (As administrator: Go to project -> Settings -> Members -> Add registered machines)  
-12. Push .gitlab-ci.yml, Dockerfile and other files used in Dockerfile to Gitlab and check pipeline out: Pipeline will fail on second job but image should be pushed on first stage -> check out image registry  
+12. Push .gitlab-ci.yml, Dockerfile and other files (e.g. hello.txt) used in Dockerfile to Gitlab and check pipeline out: Pipeline will fail on second job but image should be pushed on first stage -> check out image registry in Gitlab  
 13. Initialize Docker Swarm cluster: docker swarm init  
 14. Find out join command for other machines:  
 docker swarm join-token worker (on master) -> use this command on worker to join cluster (you can copy this command in readme in gitlab, so that other people on team can join the cluster)  
@@ -110,7 +113,8 @@ docker login master:4567
 docker service create --mode global --with-registry-auth --name ello master:4567/root/tutorial roscore  
 For more information on Docker Swarm: https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/ and follow links at bottom of page  
 18. Restart pipeline again and check if both jobs are completed  
-19. Congratulations: You achieved Continuous Deployment!
+19. Congratulations: You achieved Continuous Integration!  
+20. Develop your own application with robotic software and you achieve Continuous Integration of Robotic Software.
 
 ## Changes to be made on worker node for deployment to work
 All the machines that should be part of the cluster and do not have gitlab running on them are considered to be workers. These workers need to follow the following steps:  
