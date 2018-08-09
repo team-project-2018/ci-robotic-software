@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Continuous Integration of Robotic Software
 
 Project by: Lukas Graber, (insert your name here) under Prof. Dr. Giovanni Beltrame
@@ -152,6 +151,3 @@ http://stytex.de/blog/2018/01/16/how-to-recover-self-hosted-kubeadm-kubernetes-c
 https://docs.gitlab.com/ee/user/project/clusters/  
 -> The system is now ready  
 Issue: no kubectl in docker service, kubectl not able to find DNS-server
-=======
-# ci-robotic-software
->>>>>>> 4f0ad9edc5e2e65bc54422a9e42bdc891d6e3c97
