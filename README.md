@@ -10,8 +10,7 @@ Project by: Lukas Graber, (insert your name here) under Prof. Dr. Giovanni Beltr
 - Try to reproduce the system yourself by following the steps and change the readme file if something is unclear  
 - If you can reproduce, you can even make a tutorial video and put it on youtube and put the link in the readme, but that might be overkill  
 - If everyone wants to contribute to this repository, maybe one can make a text file containing the steps to reproduce, another one can create a turtlesim application in bash file and the third can create the youtube video  
-- Otherwise just change something minor so that the professor sees that you contributed to the repository  
-- Someone can create file with definitions of certain words like: Docker engine, Docker-compose, Kubernetes, Docker Swarm, kubectl, kubeadm,...  
+- Someone can create a file with definitions of certain words like: Docker engine, Docker-compose, Kubernetes, Docker Swarm, kubectl, kubeadm,...  
 - Before deadline remove these TODO lines from README
 
 ## Introduction
