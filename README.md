@@ -19,7 +19,7 @@ This project may be a first step on designing a system for Continuous Integratio
 
 ## Prerequisites 
 - You should have Ubuntu installed or at least simulated on a virtual machine for our system to work properly.  
-- If you want to use Kubernetes you also need enough swap memory, because you are supposed to swap off the memory for Kubernetes to work.
+- If you want to use Kubernetes you also need enough RAM, because you are supposed to swap off the memory for Kubernetes to work.
 
 ## Done
 - Gitlab registry and gitlab-runner in Docker container  
