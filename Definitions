@@ -4,6 +4,7 @@ Firstly, Docker is a platform that consists of
   - Docker Hub
       Which is a Software as a Service for managing and sharing application stacks.
 
+
 Docker offerst a tool called "Compose" for defining and running complex applicatons, such as:
   - docker-compose build  : run if you change a service
   - docker-compose up     : builds, creates, starts and attached to containers
@@ -19,3 +20,14 @@ Docker offerst a tool called "Compose" for defining and running complex applicat
   - docker-compose pull   : pulls images
   - docker-compose restart: restarts docker compose services
   - docker-compose start  : starts existing containers
+  
+  
+Docker can also be used in swarm mode, which we chose and ecexuted. This is used to natively manage a cluster of docker Engines. 
+We created a swarm (more than once), deployed the application and managed it's behavior.
+  - docker swarm join ... : used to join the  newly created swarm 
+  - docker swarm leave    : used to leave the old swarm when joining a new one
+  
+
+
+Kubernetes is by definition an open source container orchestration system for:
+automating deployment, scaling and managment of containeraized applications
