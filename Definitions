@@ -5,7 +5,7 @@ Firstly, Docker is a platform that consists of
       Which is a Software as a Service for managing and sharing application stacks.
 
 
-Docker offerst a tool called "Compose" for defining and running complex applicatons, such as:
+Docker offert a tool called "Compose" for defining and running complex applicatons, such as:
   - docker-compose build  : run if you change a service
   - docker-compose up     : builds, creates, starts and attached to containers
   - docker-compose down   : stops and removes containers created by 'up'
@@ -30,4 +30,30 @@ We created a swarm (more than once), deployed the application and managed it's b
 
 
 Kubernetes is by definition an open source container orchestration system for:
-automating deployment, scaling and managment of containeraized applications
+automating deployment, scaling and managment of containeraized applications.
+
+To interact with the Cluster there is a very handy command line interface
+
+  - kubectl               :  for running commands against Kubernetes
+
+Wit this you can create, edit, list or delete rescources from a file. 
+You can execute a command against a container in a pod or print the logs for it.
+Also update flieds of a recources, run a proxy to the Kubernetes API or run a specific image on a cluster.
+So we've seen that this command line can get very handy at times.
+
+
+Further on we can manage the cluster.
+
+  - minikube start        : creates and configures a virtual machine that runs a cluster
+this command line also configures the kubectl installation to communticate with our cluster.
+  - minikube stop         : shuts down the virtual machine but preserves all cluster state and data
+  - minikub delete        : deleted the minikube virtual machine. No data will be preserved
+
+
+In Kubernetes we can also create an only master cluster.
+
+  - kubeadm               : by definition helps you bootstrap a minimum viable Kubernetes cluster that conforms to best practices
+new users can try out Kubernetes and old users can spin up their clusters and test their applications.
+
+
+
