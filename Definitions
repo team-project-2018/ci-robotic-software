@@ -1,0 +1,21 @@
+Firstly, Docker is a platform that consists of
+  - Docker Engine
+      Which is a poweful, lightweight open source containerization technology.      
+  - Docker Hub
+      Which is a Software as a Service for managing and sharing application stacks.
+
+Docker offerst a tool called "Compose" for defining and running complex applicatons, such as:
+  - docker-compose build  : run if you change a service
+  - docker-compose up     : builds, creates, starts and attached to containers
+  - docker-compose down   : stops and removes containers created by 'up'
+  - docker-compose exec   : run arbitrary commands
+  - docker-compose create : which creates containers for a service
+  - docker-compose ps     : lists containers
+  - docker-compose stop   : stops running conatiners, but does not remove them
+  - docker-compose kill   : forces to stop the running containers
+  - docker-compose rm     : removes stopped containers
+  - docker-compose images : lists images that are beeing used
+  - docker-compose push   : pushes images
+  - docker-compose pull   : pulls images
+  - docker-compose restart: restarts docker compose services
+  - docker-compose start  : starts existing containers
