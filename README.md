@@ -51,16 +51,20 @@ There are a few essential files that bring our system into being:
 
 ## Steps to reproduce:
 The following steps document the process of setting up our system as exactly as possible:  
-1. Install docker  
+1. Install gitlab
+https://about.gitlab.com/installation/#ubuntu
+2. Get the gitlab-runners going
+https://docs.gitlab.com/runner/install/linux-manually.html
+3. Install docker  
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce-1  
-2. Install docker-compose  
+4. Install docker-compose  
 https://docs.docker.com/compose/install/  
-3. Find out your ip that router assigns to your machine: use nmcli and look for the line that starts with inet4. Note the ip that follows after inet4 - this is the ip that router assigns to pc  
-4. Map this ip to some artificial name (in our case master) in /etc/hosts (see hosts file in repository) - later we want to access gitlab instance over this ip but instead of using ip we want to type artificial name in browser  
-5. Create docker-compose.yml file from our repository and start containers with docker-compose up -d(you have to be in same folder as docker-compose.yml file when typing this command, -d for background)  
-6. type: master:7070 in browser and log in to Gitlab for first time (may take a while to pull images and start containers)  
-7. Create a project and initialize a git repository to pull and push to remote gitlab repository, just follow the advice of gitlab page to initialize and configure git on local machine  
-8. Register runner  
+5. Find out your ip that router assigns to your machine: use nmcli and look for the line that starts with inet4. Note the ip that follows after inet4 - this is the ip that router assigns to pc  
+6. Map this ip to some artificial name (in our case master) in /etc/hosts (see hosts file in repository) - later we want to access gitlab instance over this ip but instead of using ip we want to type artificial name in browser  
+7. Create docker-compose.yml file from our repository and start containers with docker-compose up -d(you have to be in same folder as docker-compose.yml file when typing this command, -d for background)  
+8. type: master:7070 in browser and log in to Gitlab for first time (may take a while to pull images and start containers)  
+9. Create a project and initialize a git repository to pull and push to remote gitlab repository, just follow the advice of gitlab page to initialize and configure git on local machine  
+10. Register runner  
     - Go inside gitlab-runner container with: docker exec -it "name of container" bash (to find out name of container type docker ps and look for some name with gitlab-runner in it)  
     - once inside container type: gitlab-runner register and follow advice: use image gitlab:dind for service dind, you can find token in gitlab container under Admin Area -> Runners or Settings -> CI/CD -> Runner settings  
     - If runner is not available in gitlab check clone_url, network_mode, volume in .docker-compose.yml and /etc/gitlab-runner/config.toml inside gitlab
@@ -90,32 +94,32 @@ https://docs.docker.com/compose/install/
 
 	Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!  
 
-9. Now a runner is registered. But to use it in Gitlab, we still need to change some configuration for the registered runner (see config.toml file in repository):  
+11. Now a runner is registered. But to use it in Gitlab, we still need to change some configuration for the registered runner (see config.toml file in repository):  
     - Find out the network on which gitlab is sitting with docker network ls and search for network whose first part is called like the folder where docker-compose file is sitting, make docker network inspect this_network and look if gitlab and gitlab-runner container is in there -> this is the network the registered runner needs to be registered to  
     - change configuration for runner to work in ci pipeline  
     clone_url: clone_url = "http://gitlab:7070"  
     network: network_mode = "tutorial_default" (in our case network is called tutorial_default)  
     volume: volumes = ["/cache","/var/run/docker.sock:/var/run/docker.sock"]  
-10. Integrate gitlab image registry  
+12. Integrate gitlab image registry  
 - The registry url is already set in the docker-compose file (you could also change line in gitlab.rb file)  
 - Add insecure registries in /etc/docker/daemon.json (see daemon.json file in repository)  
 - Restart docker engine: sudo service docker restart  
-11. Other machines can connect to Gitlab instance over browser:  
+13. Other machines can connect to Gitlab instance over browser:  
 Type master:7070 in browser and register to gitlab -> master can add people to project and assign rank (As administrator: Go to project -> Settings -> Members -> Add registered machines)  
-12. Push .gitlab-ci.yml, Dockerfile and other files (e.g. hello.txt) used in Dockerfile to Gitlab and check pipeline out: Pipeline will fail on second job but image should be pushed on first stage -> check out image registry in Gitlab  
-13. Initialize Docker Swarm cluster: docker swarm init  
-14. Find out join command for other machines:  
+14. Push .gitlab-ci.yml, Dockerfile and other files (e.g. hello.txt) used in Dockerfile to Gitlab and check pipeline out: Pipeline will fail on second job but image should be pushed on first stage -> check out image registry in Gitlab  
+15. Initialize Docker Swarm cluster: docker swarm init  
+16. Find out join command for other machines:  
 docker swarm join-token worker (on master) -> use this command on worker to join cluster (you can copy this command in readme in gitlab, so that other people on team can join the cluster)  
-15. If this is not working, maybe there is a firewall issue, so you have to open ports:  
+17. If this is not working, maybe there is a firewall issue, so you have to open ports:  
 https://www.digitalocean.com/community/tutorials/how-to-configure-the-linux-firewall-for-docker-swarm-on-ubuntu-16-04  
-16. Log in to gitlab registry to pull and push to image:  
+18. Log in to gitlab registry to pull and push to image:  
 docker login master:4567  
-17. Deploy/Create service on swarm leader onto the cluster (we will update service from within the .gitlab-ci.yml file):  
+19. Deploy/Create service on swarm leader onto the cluster (we will update service from within the .gitlab-ci.yml file):  
 docker service create --mode global --with-registry-auth --name ello master:4567/root/tutorial roscore  
 For more information on Docker Swarm: https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/ and follow links at bottom of page  
-18. Restart pipeline again and check if both jobs are completed  
-19. Congratulations: You achieved Continuous Integration!  
-20. Develop your own application with robotic software and you achieve Continuous Integration of Robotic Software.
+20. Restart pipeline again and check if both jobs are completed  
+21. Congratulations: You achieved Continuous Integration!  
+22. Develop your own application with robotic software and you achieve Continuous Integration of Robotic Software.
 
 ## Changes to be made on worker node for deployment to work
 All the machines that should be part of the cluster and do not have gitlab running on them are considered to be workers. These workers need to follow the following steps:  
