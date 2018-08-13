@@ -51,9 +51,9 @@ There are a few essential files that bring our system into being:
 
 ## Steps to reproduce:
 The following steps document the process of setting up our system as exactly as possible:  
-1. Install gitlab
+1. Install the community edition of Gitlab
 https://about.gitlab.com/installation/#ubuntu
-2. Get the gitlab-runners going
+2. Configure to use the Gitlab-Runners 
 https://docs.gitlab.com/runner/install/linux-manually.html
 3. Install docker  
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce-1  
