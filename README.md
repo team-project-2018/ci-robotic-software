@@ -6,11 +6,11 @@ Project by: Lukas Graber, Dorotea Lleshaj, (insert your name here) under Prof. D
 
 - insert your names at top of readme file  
 - you can make an additional text file, that contains the steps to reproduce and send it to the Professor  
-- Maybe develop turtlesim bash file (you would need to create bash file, include this file in Dockerfile and add all the necessary files to the repository) and you can put it on here and add in steps to reproduce where to use this bash file and what it will do BEING WORKED ON BY DOROTEA 
+- Maybe develop turtlesim bash file (you would need to create bash file, include this file in Dockerfile and add all the necessary files to the repository) and you can put it on here and add in steps to reproduce where to use this bash file and what it will do 
 - Try to reproduce the system yourself by following the steps and change the readme file if something is unclear  
 - If you can reproduce, you can even make a tutorial video and put it on youtube and put the link in the readme, but that might be overkill  
 - If everyone wants to contribute to this repository, maybe one can make a text file containing the steps to reproduce, another one can create a turtlesim application in bash file and the third can create the youtube video  
-- Someone can create a file with definitions of certain words like: Docker engine, Docker-compose, Kubernetes, Docker Swarm, kubectl, kubeadm,...  DONE
+- Someone can create a file with definitions of certain words like: Docker engine, Docker-compose, Kubernetes, Docker Swarm, kubectl, kubeadm,...  
 - Before deadline remove these TODO lines from README
 
 ## Introduction
