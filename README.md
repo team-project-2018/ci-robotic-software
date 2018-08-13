@@ -1,6 +1,6 @@
 # Continuous Integration of Robotic Software
 
-Project by: Lukas Graber, Dorotea Lleshaj, (insert your name here) under Prof. Dr. Giovanni Beltrame
+Project by: Lukas Graber, Dorotea Lleshaj, Yuli Sui, (insert your name here) under Prof. Dr. Giovanni Beltrame
 
 ## TODO for Team
 
