@@ -1,6 +1,6 @@
 stages:
-  - test
   - build
+  - test
   - deploy
 variables:
     IMAGE_TAG: "master:4567/root/tutorial"
