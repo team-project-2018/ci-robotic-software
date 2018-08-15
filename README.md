@@ -1,12 +1,7 @@
-# Continuous Integration of Robotic Software
+# Continuous Integration of Robot Software
 
-Project by: Lukas Graber, Dorotea Lleshaj, Yuli Sui, (insert your name here) under Prof. Dr. Giovanni Beltrame
+Project by: Lukas Graber, Dorotea Lleshaj, Yuli Sui, Fan Yang supervised by Prof. Dr. Giovanni Beltrame
 
-
-## TODO for Team
-
-- insert your names at top of readme file    
-- Before deadline remove these TODO lines from README
 
 ## Introduction
 This project may be a first step on designing a system for Continuous Integration of Robotic Software for professional use cases. In this README we collect all the necessary information for our system, important files, commands and a list of steps to reproduce our system.
